@@ -6,7 +6,8 @@ let msg2 = "100 year"; // type String
 let msg3 = "100"; //type String
 let myvar = false; // type boolean
 let myvar2 = true; // type boolean
-
+let n = null; // null
+let zxc; // undefined
 // Convert type variable
 let var1 = String(num1); // 10 type is string
 let var2 = Number(msg2); // 100 type is number

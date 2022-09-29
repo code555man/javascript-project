@@ -20,13 +20,53 @@ console.log(num3); // 5,4,3,2,1
 num3.length; // 5
 num3.sort() // 1,2,3,4,5
 num3.pop() // 5
+num3.push(88); // append data
+
 
 [1,2,3].every(x => x < 5) // true
 [1,2,3].some(x => x < 5) // true
-[1,2,3].filter(x => x < 2) // 1
+[1,2,3].find(x => x < 5) // 1
+[6,8,3].find(x => x < 5) // 2
+
+// some
+let __num = arr.some((item) => {
+    return item > 4;
+})  // Output : true
+
+// every 
+
+let _num = arr.every((item) => {
+    return item > 5;
+})  // Output : false  
+
+// map 
+let arr = [1,2,3,4,5,6,7,8];
+
+let qc = arr.map((item) => {
+    if(item > 5){
+        return true;
+    }
+    return false;
+})
+console.log(qc); // [false, false, false, false, false, true, true, true]
+
+// filter 
+
+let qc2 = arr.filter((item) => {
+    if(item > 5){
+        return true;
+    }
+})
+console.log(qc); // [6, 7, 8]
+
+// reduce
+
+let qc3 = arr.reduce((sum,item) => {
+    return sum + item;
+})
+console.log(qc3); // 36
 
 // Assigning array items to variable
-
 const [a,b,c] = [123,'second', true];
 /*
     a => 123
