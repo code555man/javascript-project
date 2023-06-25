@@ -1,1 +1,1 @@
-# javascript-side-project
+# javascript-project
