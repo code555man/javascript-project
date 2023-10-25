@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <h1>hello</h1>
+    <div id="app">
+        <div class="px-2">
+          {{ msg }}
+          <button  class="btn btn-sm btn-success" type="button" @click="addList">add list</button>
+          <button class="btn btn-sm btn-success" type="button" @click="deleteList">delete list</button>
+        </div>
+        <div>
+            <ul>
+                <li v-for="item in lt">{{ item }}</li>
+            </ul>
+        </div>
+        
+    </div>
+</body>
+<script>
+    const { createApp, ref } = Vue
+  
+    createApp({
+      data() {
+        return {
+          msg: 'dinamic list',
+          lt: [1,2,3],
+        }
+      },
+      methods: {
+        addList(){
+            var last = this.lt.length + 1;
+            this.lt.push(last);
+        },
+        deleteList(){
+        if(this.lt.length > 3){
+          var last = this.lt.length - 1;
+          this.lt.pop(last);
+
+        }
+        }
+      }
+
+    }).mount('#app')
+    
+  
+</script>
+</html>

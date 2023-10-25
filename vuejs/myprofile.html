@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Navbar</title>
+    <link rel="shrtcut icon" href="https://www.sportsbusinessjournal.com/-/media/Images/Daily/2023/09/13/mb-IMG-logo.ashx?mw=408">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container" id="app">
+        <div class="row" v-if="flagTitle">
+            <div class="col-12">
+                <h1>{{ message }}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                      Menu
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href="#" @click="switch_display('profile')">ประวัติ</a></li>
+                        <li class="list-group-item"><a href="#" @click="switch_display('like')">ความชอบ</a></li>
+                        <li class="list-group-item"><a href="#" @click="switch_display('contact')">ติดต่อ</a></li>
+                    </ul>
+                  </div>
+                </div>
+        
+                <div class="col-8">
+                    <div class="card w-100 h-50" v-if="flagProfile">
+                    <img src="https://cdn.pixabay.com/photo/2017/12/09/21/33/sunset-3008779_1280.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">ประวัติ</p>
+                    </div>
+                </div>
+                <div class="card w-100 h-50" v-if="flagLike">
+                    <img src="https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_1280.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">ความชอบ</p>
+                    </div>
+                </div>
+                <div class="card w-100 h-50" v-if="flagContact">
+                    <img src="https://cdn.pixabay.com/photo/2017/07/24/19/57/tiger-2535888_1280.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">ติดต่อ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const { createApp, ref } = Vue;
+
+  createApp({
+    data() {
+        return {
+            message: "My Profile",
+            flagTitle: true,
+            flagProfile: true,
+            flagLike: false,
+            flagContact: false,
+        }
+    },
+    methods: {
+        switch_display(show) {
+
+            this.flagProfile = false;
+            this.flagLike = false;
+            this.flagContact = false;
+
+            if (show == "profile"){
+                this.flagProfile = true;
+            }
+            else if (show == "like"){
+                this.flagLike = true;
+            }
+            else if (show == "contact"){
+                this.flagContact = true;
+            }
+        },
+    }
+
+  }).mount('#app')
+</script>
+</html>

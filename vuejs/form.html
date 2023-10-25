@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Input Bindings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container" id="app">
+        <div class="row">
+            <div class="col-8 mt-lg-5 mx-auto">
+                <div><h1>{{ title }}</h1></div>
+                
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Email: </label>
+                      <input type="email" v-bind:class="{'form-control': true, 'is-invalid': !is_valid}" id="exampleInputEmail1" v-model="email">
+                    </div>
+                    <button class="btn btn-sm btn-success" @click="submit"> บันทึก</button>
+                 
+                  <div class="mt-5">{{ email }}</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const { createApp, ref } = Vue;
+
+  createApp({
+    data() {
+        return {
+            title: "Form Input Bindings",
+            email: "",
+            is_valid: true,
+            
+        }
+    },
+    methods: {
+        submit(){
+            if(this.email == ""){
+                this.is_valid = false;
+                console.log(this.is_valid);
+            }else{
+                this.is_valid = true;
+                console.log(this.is_valid);
+            }
+        },
+    }
+
+  }).mount('#app')
+</script>
+</html>
