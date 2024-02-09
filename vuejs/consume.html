@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue consume data</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+    <div class="container" id="app">
+        <div class="card mt-5" style="width: auto">
+            <div class="card-body">
+                <div class="row">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text">จังหวัด:</label>
+                        <input type="text" class="form-control" v-model="getProvinceInput">
+                        <button class="btn btn-primary input-group-text" @click="clickSearchProvince">ค้นหา</button>
+                    </div>
+                    <div class="col">
+                        
+                        <ul>
+                            <li v-for="district in districtArray">{{ district }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    
+    const { createApp, ref } = Vue;
+
+    createApp({
+    data() {
+        return {
+            getProvinceInput: '',
+            districtArray: [],
+            provinceInfo: [],
+            
+        }
+    },
+    methods: {
+        clickSearchProvince(){
+            var districts = this.provinceInfo[this.getProvinceInput];
+            this.districtArray = Object.keys(districts);
+        },
+    },
+    mounted(){
+
+        axios({
+            method: 'get',
+            url: 'https://numvarn.github.io/adv-web-pro/data/thaiprovince.json'
+        }).then((res) => {
+            this.provinceInfo = res.data;
+        })
+        
+    }
+
+    }).mount('#app')
+</script>
+</html>

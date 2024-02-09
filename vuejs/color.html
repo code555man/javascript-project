@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>color picker</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #app {
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        
+            input {
+                padding: 1rem 1rem;
+                font-size: 2rem;
+                border: 0;
+                border-radius: 3px;
+                background: #fff;
+            }
+        }
+
+        h1 {
+            font-family: Open Sans;
+            color: #fff;
+            font-weight: 300;
+        }
+
+        ul {
+            display: flex
+        }
+        li {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            list-style-type: none;
+            margin: 0 10px;
+            border: 1px #000 solid;
+            cursor: pointer;
+        }
+
+        .hasPicked {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        input{
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1> Select a color</h1>
+        <div class="hasPicked" :style="{backgroundColor: isFontColorSelected}"></div>
+        <input type="color" v-model="isFontColorSelected">
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Selected</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container" id="app"> 
+        <div class="card mt-5">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <label for="inputState" class="form-label">จังหวัด: </label>
+                        <select v-model="getProvince" id="inputState" class="form-select" @change="selectProvince()">
+                            <option disabled value="">เลือกจังหวัด</option>
+                            <option v-for="pro in province" :value="pro">{{ pro }}</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="inputState" class="form-label">อำเภอ: </label>
+                        <select v-model="getDistrict" id="inputState" class="form-select" @change="selectDistrict()">
+                          <option disabled value="">เลือกอำเภอ</option>
+                          <option v-for="dist in district" :value="dist" >{{ dist }}</option>
+                        </select>
+                    </div> 
+                    <div class="col">
+                        <label for="inputState" class="form-label">ตำบล: </label>
+                        <select v-model="getSubdistrict" id="inputState" class="form-select">
+                          <option disabled value="">เลือกตำบล</option>
+                          <option v-for="subdist in subDistrict">{{ subdist }}</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <button class="mt-4 btn btn-sm btn-success" @click="showData">submit</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+    </div>
+    <script>
+        const { createApp, ref } = Vue;
+    
+        createApp({
+            data() {
+                return {
+                    provinceInfo: [],  
+                    province:[],
+                    district: [],
+                    subDistrict: [],
+                    getProvince: '',
+                    getDistrict: '',
+                    getSubdistrict:'',
+                }
+            },
+            methods: {
+                selectProvince(){
+                    this.district = Object.keys(this.provinceInfo[this.getProvince]);   
+                },
+                selectDistrict(){
+                    this.subDistrict = this.provinceInfo[this.getProvince][this.getDistrict];
+                },
+                showData(){
+                    console.log(this.getProvince);
+                    console.log(this.getDistrict);
+                    console.log(this.getSubdistrict);
+                }
+            },
+            mounted(){
+                axios({
+                    method: 'get',
+                    url: 'https://numvarn.github.io/adv-web-pro/data/thaiprovince.json'
+                }).then((res) => {
+                    this.provinceInfo = res.data; // เก็บข้อมูลจาก json file
+                    this.province = Object.keys(res.data); // เก็บชื่อจังหวัด    
+                })
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

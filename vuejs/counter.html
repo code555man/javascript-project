@@ -20,18 +20,19 @@
     const { createApp, ref } = Vue
   
     createApp({
-      data() {
-        return {
-          count: 0,
-        }
-      },
-      methods: {
-        add(){
-            this.count = this.count += 1;
+        data() {
+            return {
+            count: 0,
+            }
         },
-        sub(){
-            this.count  = this.count -= 1;
-        }}
+        methods: {
+            add(){
+                this.count = this.count += 1;
+            },
+            sub(){
+                this.count  = this.count -= 1;
+            }
+        }
 
     }).mount('#app')
     
